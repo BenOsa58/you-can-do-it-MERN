@@ -14,6 +14,7 @@ const buttonStyle = {
 };
 const DonateForm = ({ showDonateForm, setShowDonateForm, donateFormRef }) => {
   const [donationMoney, setDonationMoney] = useState(0);
+  const [projects, setProjects] = useState(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -66,6 +67,7 @@ const DonateForm = ({ showDonateForm, setShowDonateForm, donateFormRef }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("donationMoney :>> ", donationMoney);
     setFormData({ ...formData, donation: donationMoney });
     console.log("Form Submitted:", formData);
     // You can add your form submission logic here
@@ -98,10 +100,23 @@ const DonateForm = ({ showDonateForm, setShowDonateForm, donateFormRef }) => {
   //       alert("Donation failed. Please try again.");
   //     }
   //   };
+
+  const getProjects = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/projects/all");
+      const data = await response.json();
+      const projects = data.projects;
+      console.log("projects :>> ", projects);
+      setProjects(projects);
+    } catch (error) {
+      console.log("error :>> ", error);
+    }
+  };
   useEffect(() => {
     if (donateFormRef.current) {
       donateFormRef?.current?.scrollIntoView({ behavior: "smooth" });
     }
+    getProjects();
   }, [showDonateForm]);
   return (
     <div ref={donateFormRef}>
@@ -155,9 +170,10 @@ const DonateForm = ({ showDonateForm, setShowDonateForm, donateFormRef }) => {
             name="project"
           >
             <option>Select the project to donate</option>
-            <option value="Project 1">Project 1</option>
-            <option value="Project 2">Project 2</option>
-            <option value="Project 3">Project 3</option>
+            {projects &&
+              projects.map((project) => {
+                return <option value={project.title}>{project.title}</option>;
+              })}
           </Form.Select>
           <Form.Label>Select amount to donate : {donationMoney} €</Form.Label>
           <Form.Range
@@ -176,90 +192,3 @@ const DonateForm = ({ showDonateForm, setShowDonateForm, donateFormRef }) => {
 };
 
 export default DonateForm;
-
-// donation form without styling
-
-// <form onSubmit={handleSubmit}>
-
-// <label htmlFor="firstName">First Name:</label>
-// <input
-//   type="text"
-//   id="firstName"
-//   name="firstName"
-//   value={formData.firstName}
-//   onChange={handleChange}
-//   required
-// />
-// <br />
-// <br />
-
-// <label htmlFor="lastName">Last Name:</label>
-// <input
-//   type="text"
-//   id="lastName"
-//   name="lastName"
-//   value={formData.lastName}
-//   onChange={handleChange}
-//   required
-// />
-// <br />
-// <br />
-
-// <label htmlFor="email">Email:</label>
-// <input
-//   type="email"
-//   id="email"
-//   name="email"
-//   value={formData.email}
-//   onChange={handleChange}
-//   required
-// />
-// <br />
-// <br />
-
-// <p>Choose your donation amount:</p>
-// <input
-//   type="checkbox"
-//   id="donation10"
-//   name="donation10"
-//   value="10"
-//   checked={formData.donations[10]}
-//   onChange={handleChange}
-// />
-// <label htmlFor="donation10">10€</label>
-// <br />
-// <input
-//   type="checkbox"
-//   id="donation20"
-//   name="donation20"
-//   value="20"
-//   checked={formData.donations[20]}
-//   onChange={handleChange}
-// />
-// <label htmlFor="donation100">20€</label>
-// <br />
-// <input
-//   type="checkbox"
-//   id="donation50"
-//   name="donation50"
-//   value="50"
-//   checked={formData.donations[50]}
-//   onChange={handleChange}
-// />
-// <label htmlFor="donation50">50€</label>
-// <br />
-
-// <input
-//   type="checkbox"
-//   id="donation100"
-//   name="donation100"
-//   value="100"
-//   checked={formData.donations[100]}
-//   onChange={handleChange}
-// />
-// <label htmlFor="donation100">100€</label>
-// <br />
-// <br />
-
-// <button type="submit">Donate</button>
-// </form>
