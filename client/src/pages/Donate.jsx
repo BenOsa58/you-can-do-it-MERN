@@ -6,16 +6,17 @@ import { useRef } from "react";
 
 const Donate = () => {
   const [showDonateForm, setShowDonateForm] = useState(false);
+
   const donateFormRef = useRef(null);
   const handleDonateFormButton = () => {
     setShowDonateForm(true);
   };
 
-  useEffect(() => {
-    if (donateFormRef.current) {
-      donateFormRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [showDonateForm]);
+  // useEffect(() => {
+  //   if (donateFormRef.current) {
+  //     donateFormRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [showDonateForm]);
 
   return (
     <div>
@@ -26,11 +27,25 @@ const Donate = () => {
         of those we serve. Your donation will help us continue our work towards
         creating a better future for all.
       </p>
-      <Button variant="success" onClick={handleDonateFormButton}>
-        Donate Now
-      </Button>
+      {!showDonateForm && (
+        <Button
+          variant="success"
+          onClick={(e) => {
+            handleDonateFormButton(e);
+            // donateFormRef.current.scrollIntoView({ behavior: "smooth" });
+          }}
+        >
+          Donate Now
+        </Button>
+      )}
 
-      {showDonateForm && <DonateForm donateFormRef={donateFormRef} />}
+      {showDonateForm && (
+        <DonateForm
+          donateFormRef={donateFormRef}
+          setShowDonateForm={setShowDonateForm}
+          showDonateForm={showDonateForm}
+        />
+      )}
     </div>
   );
 };

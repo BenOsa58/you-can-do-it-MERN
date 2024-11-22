@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
 import { useState } from "react";
@@ -12,41 +12,65 @@ const buttonStyle = {
   borderRadius: "5px",
   cursor: "pointer",
 };
-const DonateForm = () => {
+const DonateForm = ({ showDonateForm, setShowDonateForm, donateFormRef }) => {
   const [donationMoney, setDonationMoney] = useState(0);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    donations: {
-      50: false,
-      100: false,
-    },
+    // donations: {
+    //   50: false,
+    //   100: false,
+    // },
+    project: "",
+    donation: donationMoney,
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    console.log("name, value :>> ", name, value);
+    // if (type === "checkbox") {
+    //   setFormData((prevData) => ({
+    //     ...prevData,
+    //     donations: {
+    //       ...prevData.donations,
+    //       [value]: checked,
+    //     },
+    //   }));
+    // } else {
+    //   setFormData((prevData) => ({
+    //     ...prevData,
+    //     [name]: value,
+    //   }));
+    // }
+    // if (name === "donation") {
+    //   setFormData((prevData) => ({
+    //     ...prevData,
+    //     donations: {
+    //       ...prevData.donations,
+    //       [value]: donationMoney,
+    //     },
+    //   }));
+    // } else {
+    //   setFormData((prevData) => ({
+    //     ...prevData,
+    //     [name]: value,
+    //   }));
+    // }
 
-    if (type === "checkbox") {
-      setFormData((prevData) => ({
-        ...prevData,
-        donations: {
-          ...prevData.donations,
-          [value]: checked,
-        },
-      }));
-    } else {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setFormData({ ...formData, donation: donationMoney });
     console.log("Form Submitted:", formData);
     // You can add your form submission logic here
+
+    setShowDonateForm(false);
   };
 
   // const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
@@ -74,51 +98,78 @@ const DonateForm = () => {
   //       alert("Donation failed. Please try again.");
   //     }
   //   };
-
+  useEffect(() => {
+    if (donateFormRef.current) {
+      donateFormRef?.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showDonateForm]);
   return (
-    <div>
-      <h1>Donation Form</h1>
+    <div ref={donateFormRef}>
+      <h2>Donation Form</h2>
       <React.Fragment>
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon1">First Name</InputGroup.Text>
-          <Form.Control
-            placeholder=""
-            aria-label="FirstName"
-            aria-describedby="basic-addon1"
-          />
-        </InputGroup>
+        <Form onSubmit={handleSubmit}>
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon1">First Name</InputGroup.Text>
+            <Form.Control
+              onChange={handleChange}
+              placeholder=""
+              aria-label="FirstName"
+              aria-describedby="basic-addon1"
+              name="firstName"
+            />
+          </InputGroup>
 
-        <InputGroup className="mb-3">
-          <InputGroup.Text id="basic-addon2">Last Name</InputGroup.Text>
-          <Form.Control
-            placeholder=""
-            aria-label="LastName"
-            aria-describedby="basic-addon2"
-          />
-        </InputGroup>
+          <InputGroup className="mb-3">
+            <InputGroup.Text id="basic-addon2">Last Name</InputGroup.Text>
+            <Form.Control
+              onChange={handleChange}
+              placeholder=""
+              aria-label="LastName"
+              aria-describedby="basic-addon2"
+              name="lastName"
+            />
+          </InputGroup>
 
-        <InputGroup className="mb-3">
+          {/* <InputGroup className="mb-3">
           <InputGroup.Text id="basic-addon3">Email</InputGroup.Text>
           <Form.Control
             type="number"
             id="basic-url"
             aria-describedby="basic-addon3"
           />
-        </InputGroup>
-        <Form.Select aria-label="Default select example">
-          <option>Select the project to donate</option>
-          <option value="1">Project 1</option>
-          <option value="2">Project 2</option>
-          <option value="3">Project 3</option>
-        </Form.Select>
-        <Form.Label>Select amount to donate : {donationMoney} €</Form.Label>
-        <Form.Range
-          max={1000}
-          min={0}
-          value={donationMoney}
-          onChange={(e) => setDonationMoney(e.target.value)}
-        />
-        <Button>Make Donation</Button>
+        </InputGroup> */}
+
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              onChange={handleChange}
+              type="email"
+              placeholder="Enter email"
+              name="email"
+            />
+            <Form.Text className="text-muted"></Form.Text>
+          </Form.Group>
+
+          <Form.Select
+            aria-label="Default select example"
+            onChange={handleChange}
+            name="project"
+          >
+            <option>Select the project to donate</option>
+            <option value="Project 1">Project 1</option>
+            <option value="Project 2">Project 2</option>
+            <option value="Project 3">Project 3</option>
+          </Form.Select>
+          <Form.Label>Select amount to donate : {donationMoney} €</Form.Label>
+          <Form.Range
+            max={1000}
+            min={0}
+            value={donationMoney}
+            onChange={(e) => setDonationMoney(e.target.value)}
+            name="donation"
+          />
+
+          <Button type="submit">Make Donation</Button>
+        </Form>
       </React.Fragment>
     </div>
   );
