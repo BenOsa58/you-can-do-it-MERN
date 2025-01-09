@@ -3,10 +3,10 @@ import Project from "../components/Project";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import ProjectsCarousel from "../components/ProjectsCarousel";
 import ProjectsCard from "../components/ProjectsCard";
+
 const ProjectsList = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const fetchProjects = async () => {
     try {
       const response = await fetch(
