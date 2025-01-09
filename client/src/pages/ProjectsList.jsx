@@ -9,7 +9,7 @@ const ProjectsList = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost:5000/projects/all");
+      const response = await fetch(`${process.env.SERVER_URL}/projects/all`);
       const data = await response.json();
       setProjects(data.projects);
     } catch (error) {
