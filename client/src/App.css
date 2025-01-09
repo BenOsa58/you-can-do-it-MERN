@@ -1,7 +1,21 @@
-.getInvolved {
-  max-width: 100px;
+.navbar {
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  background-color: #333;
 }
-#root {
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+}
+.content {
+  padding: 10px;
+}
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 9rem;
@@ -35,14 +49,160 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
+} */
 
-.card {
+.read-the-docs {
+  color: #888;
+}
+*/ .card {
   padding: 2em;
   color: chocolate;
   background-color: antiquewhite;
 }
+.card-text {
+}
 
-.read-the-docs {
-  color: #888;
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.donateButton {
+  background-color: #f9f9f9;
+}
+.carousel-item {
+  min-height: 300px;
+}
+.donationForm {
+  color: red;
+}
+.sign-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  background-color: aqua;
+}
+.signup {
+  color: green;
+}
+.me-auto {
+  position: fixed;
+  top: 0;
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  z-index: 1;
+  align-items: center;
+  border-radius: 20px;
+  /* width: 100%;
+  min-height: 50px;
+  min-width: 100px;
+  font-size: x-large; */
+
+  background-color: mediumpurple;
+}
+
+.Contact {
+  padding: 0px;
+  background-color: aqua;
+}
+.home {
+  width: 100%;
+  min-height: 50px;
+  min-width: 1000;
+  padding: 20px;
+  background-color: whitesmoke;
+}
+.GetInvolved {
+  width: 100%;
+  min-height: 50px;
+  padding: 20px;
+}
+.Media {
+  width: 100%;
+  min-height: 50px;
+  padding: 20px;
+}
+.contact-info {
+  width: 100%;
+  min-height: 50px;
+  padding: 20px;
+  background-color: navajowhite;
+}
+.Donate {
+  width: 100%;
+  min-height: 50px;
+  padding: 50px;
+}
+.CreateProject {
+  width: 100%;
+  min-height: 50px;
+  padding: 50px;
+}
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 0px;
+}
+
+.container {
+  width: 100%;
+
+  max-width: 800px;
+
+  margin: auto;
+}
+
+.list {
+  border: 1px solid #fff;
+
+  padding: 5px;
+}
+
+.pagination {
+  display: flex;
+
+  border: 1px solid #fff;
+
+  justify-content: space-between;
+
+  padding: 20px;
+}
+
+.pagination button {
+  padding: 10px;
+}
+
+.active {
+  /* background: black; */
+
+  color: #fff;
+
+  border: 1px solid #fff;
 }

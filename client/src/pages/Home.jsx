@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useEffect, useState } from "react";
+import { AuthContext } from "../components/context/AuthContext";
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div className="home">
-      <h1>Welcome to the Home Page </h1>
-
+      <h1>YOU CAN DO IT CHARITY </h1>
+      {user && <h4>Welcome {user.username}</h4>}
       <p>
         <strong>About Us:</strong> We at You Can Do It Charity work across the
         spectrum of health, poverty, water, housing, education and other social
@@ -45,8 +49,32 @@ const Home = () => {
         project ensures that children without access to schools can still learn
         and grow.
       </p>
+
+      <div className="contact-info">
+        <h2>Contact Us</h2>
+        <p>
+          <strong>Address:</strong> Tempelhofer Damm 133-137, Berlin, Germany
+        </p>
+        <p>
+          <strong>Phone:</strong>{" "}
+          <a href="tel:+4917631388428">(0176) 31388428</a>
+        </p>
+        <p>
+          <strong>Email:</strong>{" "}
+          <a href="mailto:ccogberlin@gmail.com">ccogberlin@gmail.com</a>
+        </p>
+        <p>
+          <strong>Facebook:</strong>{" "}
+          <a
+            href="https://www.facebook.com/yourprofile"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Christ Church Of God
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
-
 export default Home;

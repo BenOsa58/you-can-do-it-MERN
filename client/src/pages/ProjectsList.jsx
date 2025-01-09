@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import Project from "../components/Project";
-
+import { Col, Container, Form, Row } from "react-bootstrap";
+import ProjectsCarousel from "../components/ProjectsCarousel";
+import ProjectsCard from "../components/ProjectsCard";
 const ProjectsList = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,16 +23,22 @@ const ProjectsList = () => {
   }, []);
 
   return (
-    <div>
+    <Container className="p-3">
       <h1>You Can Do It Charity</h1>
+      {/* <ProjectsCard projects={projects} /> */}
+      {/* <ProjectsCarousel projects={projects} />
+      {loading && <p>Loading...</p>} */}
+      <Container>
+        <Row>
+          {projects &&
+            projects.map((project, index) => (
+              <Col key={index}>
+                <Project project={project} fetchProjects={fetchProjects} />
+              </Col>
+            ))}
+        </Row>
+      </Container>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        projects.map((project, index) => (
-          <Project key={index} project={project} />
-        ))
-      )}
       <p>
         Education is a powerful tool for breaking the cycle of poverty. It
         provides individuals with the skills and knowledge necessary for
@@ -40,7 +47,7 @@ const ProjectsList = () => {
         and poverty reduction is well-established, and investing in education is
         crucial for sustainable development. Poverty is a complex issue that
         affects individuals, families, and communities in multiple ways. It is
-        characterised by a lack of access to basic needs such as food, shelter,
+        characterized by a lack of access to basic needs such as food, shelter,
         and healthcare, as well as limited opportunities for education,
         employment, and social mobility. Education is essential for addressing
         these issues, as it provides individuals with the skills and knowledge
@@ -62,7 +69,7 @@ const ProjectsList = () => {
         societies. Education also gives individuals the skills and knowledge
         necessary to become leaders in their communities, which can lead to
         positive social change. Furthermore, education is essential for
-        addressing the intergenerational transmission of poverty. Children from
+        addressing the inter-generational transmission of poverty. Children from
         low-income families are disadvantaged in education, as they often lack
         the resources and support necessary to succeed in school. This can lead
         to a lack of opportunities and a perpetuation of poverty across
@@ -83,7 +90,7 @@ const ProjectsList = () => {
         underprivileged.
       </p>
       <p>You can also help by donating today.</p>
-    </div>
+    </Container>
   );
 };
 

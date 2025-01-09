@@ -1,71 +1,53 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import DonateButton from "./DonateForm";
 import { Form } from "react-bootstrap";
 
 function Project(props) {
+  console.log("props :>> ", props);
   const project = props.project;
+  const fetchProjects = props.fetchProjects;
   console.log("project :>> ", project);
   const [amount, setAmount] = useState(20);
   const [donorName, setDonorName] = useState("");
-  // use state amount donor name
+
   console.log("donorName :>> ", donorName);
+  const handleDeleteProject = async () => {
+    console.log("project._id", project._id);
+    const requestOptions = {
+      method: "DELETE",
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/projects/${project._id}`,
+        requestOptions
+      );
+      const result = await response.json();
+      console.log("result :>> ", result);
+      alert(result.message);
+      fetchProjects();
+    } catch (error) {
+      console.log("error :>> ", error);
+    }
+  };
+
   return (
     <div>
       <Card style={{ width: "18rem" }}>
-        <Card.Img
-          variant="top"
-          src="https://community.softr.io/uploads/db9110/original/2X/7/74e6e7e382d0ff5d7773ca9a87e6f6f8817a68a6.jpeg"
-        />
+        <Card.Img variant="top" src={project.image} />
         <img src="" alt="" />
         <Card.Body>
-          <Card.Title>{Project.title}</Card.Title>
-          <Card.Text>
-            <p>category-{project.cagtegory}</p>
-            <p>description-{project.description}</p>
-            <p>likes - {project.likes} </p>
-            <p>supporters-{project.supporters}</p>
-            <p>title-{project.title}</p>
-          </Card.Text>
-          {/* form inputs amount name to fill state */}
-          <div>
-            <h2>Donation Form</h2>
-            <Form
-            // onSubmit={handleSubmit}
-            >
-              <div>
-                <label htmlFor="donorName">Donor Name:</label>
-                <input
-                  type="text"
-                  id="donorName"
-                  value={donorName}
-                  onChange={(e) => setDonorName(e.target.value)}
-                  placeholder="Enter your name"
-                />
-              </div>
+          <Card.Title>{project.title}</Card.Title>
+          <Card.Text>title-{project.title}</Card.Text>
+          <Card.Text>category-{project.category}</Card.Text>
+          <Card.Text>description-{project.description}</Card.Text>
+          <div></div>
 
-              {/* Input for donation amount */}
-              <div>
-                <label htmlFor="amount">Amount:</label>
-                <input
-                  type="number"
-                  id="amount"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="Enter donation amount"
-                />
-              </div>
-            </Form>
-          </div>
-
-          {donorName && (
-            <DonateButton
-              projectId={project._id}
-              amount={amount}
-              donor={donorName}
-            />
-          )}
+          <Button onClick={handleDeleteProject} variant="danger">
+            Delete project
+          </Button>
         </Card.Body>
       </Card>
     </div>
