@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h1>YOU CAN DO IT CHARITY </h1>
+      <h1 className="charity">YOU CAN DO IT CHARITY </h1>
       {user && <h4>Welcome {user.username}</h4>}
       <p>
         <strong>About Us:</strong> We at You Can Do It Charity work across the

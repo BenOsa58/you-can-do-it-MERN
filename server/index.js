@@ -5,23 +5,12 @@ import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 import projectsRouter from "./Routes/projectsRouter.js";
 import calculateDonationMoney from "./testing/test.js";
-
 import authRoutes from "./Routes/authRoute.js";
 import userRouter from "./Routes/userRoute.js";
-// import paypalRoutes from "./Routes/paymentRoute.js";
 import passport from "passport";
 import passportConfig from "./config/passport.js";
 
-//passport middleware
-//
-//passport configuration
-//
 dotenv.config();
-// const paypalRoutes = require("./routes/paypalRoutes");
-// app.use("/api/paypal", paypalRoutes);
-
-//const express = require("express");
-//const userRouter = require("./usersRouter");
 
 const addMiddlewares = () => {
   app.use(express.json());

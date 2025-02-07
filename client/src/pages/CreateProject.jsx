@@ -25,7 +25,9 @@ const CreateProject = () => {
     };
     try {
       const response = await fetch(
-        "http://localhost:5000/projects/createProject",
+        //`${process.env.VITE_SERVER_URL}/projects/all`,
+        `${process.env.VITE_SERVER_URL}/projects/createProject`,
+        // "http://localhost:5000/projects/createProject",
         requestOptions
       );
       const result = await response.json();
@@ -50,8 +52,8 @@ const CreateProject = () => {
   };
 
   return (
-    // <div ref={createProjectFormRef}>
     <div>
+      <h1 className="charity">YOU CAN DO IT CHARITY </h1>
       <h2>CreateProject Form</h2>
       <React.Fragment>
         <Form onSubmit={handleSubmit}>

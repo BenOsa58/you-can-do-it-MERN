@@ -22,9 +22,6 @@ const ProjectsDropdown2 = () => {
     } catch (error) {
       console.error("Error fetching projects:", error);
     }
-    // finally {
-    //   setLoading(false);
-    // }
   };
   useEffect(() => {
     fetchProjects();
@@ -38,18 +35,6 @@ const ProjectsDropdown2 = () => {
             <Project project={project} fetchProjects={fetchProjects} />
           </NavDropdown.Item>
         ))}
-
-      {/* <label htmlFor="projectsDropdown">Select a Project: </label>
-      <select id="projectsDropdown" name="projectsDropdown">
-        {projectsList.map((project, index) => (
-          <option
-            key={index}
-            value={project.toLowerCase().replace(/\s+/g, "-")}
-          >
-            {project}
-          </option>
-        ))}
-      </select> */}
     </NavDropdown>
   );
 };

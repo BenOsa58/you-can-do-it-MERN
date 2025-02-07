@@ -83,27 +83,44 @@ const addDonationToProject = async (req, res) => {
 };
 
 const deleteProject = async (req, res) => {
-  console.log("delete :>> ");
+  console.log("req.body :>> ", req.body);
+  const userId = req.user._id.toString();
+  console.log("userId :>> ", userId.toString());
+  const projectId = req.body.projectId;
   const { id } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such project" });
-  }
   try {
-    const project = await projectsModel.findOneAndDelete({ _id: id });
-    if (!project) {
-      return res.status(400).json({ error: "No such project" });
-    } else {
-      return res.status(200).json({
-        message: "Project deleted successfully ",
-        deletedProject: project,
-      });
+    const project = await projectsModel.findById(projectId);
+    console.log("project :>> ", project);
+    if (userId === project.userId) {
+      try {
+        const project = await projectsModel.findOneAndDelete({
+          _id: projectId,
+        });
+        console.log("project", project);
+        if (!project) {
+          return res.status(400).json({ error: "No such project" });
+        } else {
+          return res.status(200).json({
+            message: "Project deleted successfully ",
+            deletedProject: project,
+          });
+        }
+      } catch (error) {
+        console.log("error deleting :>> ", error);
+        return res.status(400).json({
+          error: "something went wrong deleting the project ",
+        });
+      }
+    }
+
+    if (userId !== project.userId) {
+      return res
+        .status(400)
+        .json({ error: "You are not authorized to delete this project" });
     }
   } catch (error) {
-    console.log("error deleting :>> ", error);
-    return res.status(400).json({
-      error: "something went wrong deleting the project ",
-    });
+    return res.status(400).json({ error: "Project not found" });
   }
 };
 

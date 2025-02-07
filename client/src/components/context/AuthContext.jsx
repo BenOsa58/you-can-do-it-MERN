@@ -4,13 +4,13 @@ import { createContext } from "react";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  console.log("children :>> ", children);
+  // console.log("children :>> ", children);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUserStatus = async () => {
       const token = localStorage.getItem("token");
-      console.log("token :>> ", token);
+      // console.log("token :>> ", token);
       if (!token) {
         console.error("User needs to Sign in");
         return;

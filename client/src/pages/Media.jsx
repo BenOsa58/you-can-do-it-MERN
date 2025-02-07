@@ -3,6 +3,7 @@ import React from "react";
 const Media = () => {
   return (
     <div className="Media">
+      <h1 className="charity">YOU CAN DO IT CHARITY </h1>
       <h2>Social Media</h2>
       <p></p>
 

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-//import { MenuItems } from "./MenuItems";
-//import "./Dropdown.css";
 import { Link } from "react-router-dom";
 import ProjectsList from "./ProjectsList";
 import { Row } from "react-bootstrap";
-//import "./App.css";
+import { Col } from "react-bootstrap";
 
 function Dropdown() {
   const handleChange = (event) => {

@@ -8,20 +8,16 @@ import {
   createProject,
 } from "../controllers/projectsController.js";
 import multerUpload from "../middlewares/multer.js";
+import passportCheck from "../utils/passportCheck.js";
 const projectsRouter = express.Router();
 
 projectsRouter.get("/all", getAllProjects);
-projectsRouter.get("/:projectId", getProjectById);
+projectsRouter.get("/singleProject/:projectId", getProjectById);
 
-projectsRouter.delete("/:id", deleteProject);
+projectsRouter.delete("/singleProject/delete", passportCheck, deleteProject);
 
 projectsRouter.patch("/:id", updateProject);
 
-// projectsRouter.post(
-//   "/createProject",
-//   multerUpload.single("projectImage"),
-//   createProject
-// );
 projectsRouter.post(
   "/createProject",
 

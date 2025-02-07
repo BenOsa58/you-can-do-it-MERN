@@ -7,7 +7,6 @@ import GetInvolved from "./pages/GetInvolved";
 import Media from "./pages/Media";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
-//import ProjectsDropdown from "./pages/ProjectsDropdown";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SignUp from "./pages/SignUp";
@@ -16,32 +15,48 @@ import Footer from "./pages/Footer";
 import { AuthContext } from "./components/context/AuthContext";
 import CreateProject from "./pages/CreateProject";
 import ProjectsDropdown from "./pages/ProjectsDropdown";
-//import Dropdown from "./pages/Dropdown";
-//import PaymentMethod from "./components/PaymentMethod";
+import SingleProject from "./pages/SingleProject";
+import PaymentTest from "./pages/PaymentTest";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 function App() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
   };
+  const options = {
+    // passing the client secret obtained from the server
+    // clientSecret: "client secret here",
+    appearance: {
+      theme: "stripe",
+    },
+    mode: "payment",
+    amount: 1099,
+    currency: "usd",
+  };
   return (
-    <Router>
-      <Navbar handleOpen={handleOpen} />
-      <ProjectsDropdown open={open} />
-      {/* <Dropdown open={open} /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
-        {/* <Route path="/projectsDropdown" element={<ProjectsDropdown />} /> */}
-        <Route path="/getInvolved" element={<GetInvolved />} />
-        <Route path="/media" element={<Media />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/donate" element={<Donate />} />
-        <Route path="/createProject" element={<CreateProject />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-      </Routes>
-      <Footer />
-    </Router>
+    <Elements stripe={stripePromise} options={options}>
+      <Router>
+        <Navbar handleOpen={handleOpen} />
+        <ProjectsDropdown open={open} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:projectId" element={<SingleProject />} />
+          <Route path="/getInvolved" element={<GetInvolved />} />
+          <Route path="/media" element={<Media />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/donate" element={<Donate />} />
+          <Route path="/createProject" element={<CreateProject />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/payment-test" element={<PaymentTest />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </Elements>
   );
 }
 

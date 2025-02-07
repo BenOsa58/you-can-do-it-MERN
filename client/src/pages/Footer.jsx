@@ -4,8 +4,10 @@ function Footer() {
   return (
     <footer style={footerStyle}>
       <footer>
-        <p>&copy;2024 You can do it charity Website. All rights reserved.</p>
-        <p>Created by Ben Etinosa Osadiaye</p>
+        <p>
+          &copy;2024 You can do it charity Website. All rights reserved. Created
+          by Ben Etinosa Osadiaye
+        </p>
       </footer>
     </footer>
   );
@@ -14,7 +16,8 @@ function Footer() {
 const footerStyle = {
   position: "fixed",
   bottom: 0,
-  width: "100%",
+  width: "1o0%",
+  height: "0%",
   backgroundColor: "#333",
   color: "#fff",
   textAlign: "center",

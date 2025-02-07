@@ -4,6 +4,7 @@ import {
   signin,
   signup,
   signout,
+  donate,
 } from "../controllers/userController.js";
 
 import passportCheck from "../utils/passportCheck.js";
@@ -18,4 +19,5 @@ userRouter.post("/signup", signup);
 userRouter.post("/signin", signin);
 userRouter.get("/checkStatus", passportCheck, checkUserStatus);
 userRouter.get("/signout", signout);
+userRouter.post("/donate", donate);
 export default userRouter;

@@ -3,6 +3,7 @@ import React from "react";
 const Contact = () => {
   return (
     <div className="contact-info">
+      <h1 className="charity">YOU CAN DO IT CHARITY </h1>
       <h2>Contact Us</h2>
       <p>
         <strong>Address:</strong> Tempelhofer Damm 133-137, Berlin, Germany

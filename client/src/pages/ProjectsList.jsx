@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Project from "../components/Project";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import ProjectsCarousel from "../components/ProjectsCarousel";
 import ProjectsCard from "../components/ProjectsCard";
 
 const ProjectsList = () => {
@@ -14,6 +13,7 @@ const ProjectsList = () => {
       );
       const data = await response.json();
       setProjects(data.projects);
+      console.log("data.projects :>> ", data.projects);
     } catch (error) {
       console.error("Error fetching projects:", error);
     } finally {
@@ -26,12 +26,9 @@ const ProjectsList = () => {
 
   return (
     <Container className="p-3">
-      <h1>You Can Do It Charity</h1>
-      {/* <ProjectsCard projects={projects} /> */}
-      {/* <ProjectsCarousel projects={projects} />
-      {loading && <p>Loading...</p>} */}
+      <h1 className="charity">You Can Do It Charity</h1>
       <Container>
-        <Row>
+        <Row className="project">
           {projects &&
             projects.map((project, index) => (
               <Col key={index}>

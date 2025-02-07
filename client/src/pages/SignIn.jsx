@@ -27,7 +27,7 @@ export default function SignIn() {
       });
 
       const data = await res.json();
-      setUser({ username: data.user.username, email: data.user.email });
+      setUser(data.user);
       console.log("data :>> ", data);
       setLoading(false);
       if (!data.token) {
@@ -40,7 +40,7 @@ export default function SignIn() {
         localStorage.setItem("token", data.token);
       }
       if (data.success === false) setError(true);
-      // navigate("/projects");
+      navigate("/");
       return;
     } catch (error) {
       setLoading(false);
@@ -49,7 +49,8 @@ export default function SignIn() {
   };
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">SigIn</h1>
+      <h1 className="charity">YOU CAN DO IT CHARITY </h1>
+      <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 sign-form">
         <input
           type="email"

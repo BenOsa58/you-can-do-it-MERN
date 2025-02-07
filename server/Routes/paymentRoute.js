@@ -3,7 +3,6 @@ const paypalClient = require("./paypalClient");
 const paypal = require("@paypal/checkout-server-sdk");
 const router = express.Router();
 
-// Create order route
 router.post("/create-order", async (req, res) => {
   const { amount } = req.body;
 
@@ -30,7 +29,6 @@ router.post("/create-order", async (req, res) => {
   }
 });
 
-// Capture payment route
 router.post("/capture-order", async (req, res) => {
   const { orderId } = req.body;
 
@@ -46,5 +44,3 @@ router.post("/capture-order", async (req, res) => {
   }
 });
 export default paymentRouter;
-
-//module.exports = paymentRouter;

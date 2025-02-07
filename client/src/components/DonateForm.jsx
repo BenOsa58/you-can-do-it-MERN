@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
   const [projects, setProjects] = useState(null);
-
+  console.log("projects :>> ", projects);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -24,8 +24,9 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
     urlencoded.append("lastName", lastName);
     urlencoded.append("email", email);
     urlencoded.append("amount", donationMoney);
-    urlencoded.append("paymentMethod", paymentMethods);
-    urlencoded.append("selectedPaymentMethod", selectedPaymentMethods);
+    urlencoded.append("projectId", selectedProjectId);
+
+    urlencoded.append("paymentMethod", selectedPaymentMethods);
 
     const requestOptions = {
       method: "POST",
@@ -34,7 +35,8 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
     };
     try {
       const response = await fetch(
-        "http://localhost:5000/projects/donate/" + selectedProjectId,
+        `${process.env.VITE_SERVER_URL}/api/user/donate`,
+        // "http://localhost:5000/projects/donate/" + selectedProjectId,
         requestOptions
       );
       const result = await response.json();
@@ -58,21 +60,23 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
     setEmail(event.target.value);
   };
   const handleChangeSelectedProject = (event) => {
+    console.log("event.target.value :>> ", event.target.value);
     setSelectedProjectId(event.target.value);
   };
   const handleChangeDonationMoney = (event) => {
     setDonationMoney(event.target.value);
   };
-  const handleChangePaymentMethods = (event) => {
-    setPaymentMethod(event.target.value);
-  };
+
   const handleChangeSelectedPaymentMethods = (event) => {
     setSelectedPaymentMethod(event.target.value);
   };
 
   const getProjects = async () => {
     try {
-      const response = await fetch("http://localhost:5000/projects/all");
+      const response = await fetch(
+        `${process.env.VITE_SERVER_URL}/projects/all`
+      );
+      // "http://localhost:5000/projects/all");
       const data = await response.json();
       setProjects(data.projects);
     } catch (error) {
@@ -110,7 +114,7 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
               name="lastName"
             />
           </InputGroup>
-          <InputGroup className="mb-3">
+          {/* <InputGroup className="mb-3">
             <InputGroup.Text id="basic-addon2">paymentMethods</InputGroup.Text>
             <Form.Control
               onChange={handleChangePaymentMethods}
@@ -119,7 +123,7 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
               aria-describedby="basic-addon2"
               name="paymentMethods"
             />
-          </InputGroup>
+          </InputGroup> */}
 
           <InputGroup className="mb-3" controlId="formBasicEmail">
             <InputGroup.Text id="basic-addon2">Enter Email</InputGroup.Text>
@@ -137,24 +141,10 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
             name="paymentMethod"
           >
             <option>Select paymentMethod to donate</option>
-
-            {/* {projects &&
-              projects.map((project) => {
-                return (
-                  <option value={project._id} key={project._id}>
-                    {project.title} */}
-            {/* {CreditCard}
-            {PayPal}
-            {paymentMethods &&
-              paymentMethods.map((paymentMethod) => {
-                return (
-                  <option value={paymentMethod} key={paymentMethod}>
-                    {paymentMethod.title}
-                  </option>
-                );
-              })} */}
+            <option value="credit card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bank transfer">Bank Transfer</option>
           </Form.Select>
-
           <Form.Select
             aria-label="Default select example"
             onChange={handleChangeSelectedProject}
@@ -165,7 +155,7 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
               projects.map((project) => {
                 return (
                   <option value={project._id} key={project._id}>
-                    {project.title}
+                    {project.title} ({project.category})
                   </option>
                 );
               })}
