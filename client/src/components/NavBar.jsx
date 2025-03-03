@@ -54,7 +54,8 @@ function MyNavbar({ handleOpen }) {
             Contact
           </Nav.Link>
           <Nav.Link
-            to="https://donate.stripe.com/test_fZe7ut9wr6CecIU9AC"
+            // to="https://donate.stripe.com/test_fZe7ut9wr6CecIU9AC"
+            to="/donate"
             as={NavLink}
           >
             Donate
