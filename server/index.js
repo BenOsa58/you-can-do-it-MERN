@@ -22,10 +22,11 @@ const addMiddlewares = () => {
 
   // make url env variable
   const corsOptions = {
-    // origin: "http://localhost:5173",
-    origin: ["https://you-can-do-it-mern-86oq.vercel.app"],
+    origin: "http://localhost:5173",
+    // origin: ["https://you-can-do-it-mern-86oq.vercel.app"],
   };
-  app.use(cors(corsOptions));
+  app.use(cors());
+  // app.use(cors(corsOptions));
   app.use(passport.initialize());
   passportConfig(passport);
 };
