@@ -19,10 +19,11 @@ const addMiddlewares = () => {
       extended: true,
     })
   );
+
+  // make url env variable
   const corsOptions = {
     // origin: "http://localhost:5173",
-    origin: "https://you-can-do-it-mern-86oq.vercel.app",
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    origin: ["https://you-can-do-it-mern-86oq.vercel.app"],
   };
   app.use(cors(corsOptions));
   app.use(passport.initialize());
@@ -37,7 +38,7 @@ const startServer = () => {
 };
 
 const loadRoutes = () => {
-  app.use("/projects", projectsRouter);
+  app.use("/api/projects", projectsRouter);
   app.use("/api/user", userRouter);
   app.use("/api/auth", authRoutes);
 

@@ -29,6 +29,7 @@ function App() {
   const options = {
     // passing the client secret obtained from the server
     // clientSecret: "client secret here",
+
     appearance: {
       theme: "stripe",
     },

@@ -74,7 +74,7 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
   const getProjects = async () => {
     try {
       const response = await fetch(
-        `${process.env.VITE_SERVER_URL}/projects/all`
+        `${process.env.VITE_SERVER_URL}/api/projects/all`
       );
       // "http://localhost:5000/projects/all");
       const data = await response.json();

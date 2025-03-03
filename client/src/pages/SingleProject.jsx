@@ -14,7 +14,7 @@ function SingleProject(props) {
   const fetchSingleProject = async () => {
     try {
       const response = await fetch(
-        `${process.env.VITE_SERVER_URL}/projects/singleProject/${projectId}`
+        `${process.env.VITE_SERVER_URL}/api/projects/singleProject/${projectId}`
       );
       const data = await response.json();
       console.log("data :>> ", data);

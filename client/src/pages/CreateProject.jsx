@@ -26,7 +26,7 @@ const CreateProject = () => {
     try {
       const response = await fetch(
         //`${process.env.VITE_SERVER_URL}/projects/all`,
-        `${process.env.VITE_SERVER_URL}/projects/createProject`,
+        `${process.env.VITE_SERVER_URL}/api/projects/createProject`,
         // "http://localhost:5000/projects/createProject",
         requestOptions
       );

@@ -9,7 +9,7 @@ const ProjectsList = () => {
   const fetchProjects = async () => {
     try {
       const response = await fetch(
-        `${process.env.VITE_SERVER_URL}/projects/all`
+        `${process.env.VITE_SERVER_URL}/api/projects/all`
       );
       const data = await response.json();
       setProjects(data.projects);

@@ -53,7 +53,10 @@ function MyNavbar({ handleOpen }) {
           <Nav.Link to="/contact" as={NavLink}>
             Contact
           </Nav.Link>
-          <Nav.Link to="/donate" as={NavLink}>
+          <Nav.Link
+            to="https://donate.stripe.com/test_fZe7ut9wr6CecIU9AC"
+            as={NavLink}
+          >
             Donate
           </Nav.Link>
           <Nav.Link to="/createProject" as={NavLink}>
