@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const getAllProjects = async (req, res) => {
   try {
     const allProjects = await projectsModel.find({});
-    console.log("allProjects :>> ", allProjects);
+    // console.log("allProjects :>> ", allProjects);
     res.status(200).json({
       message: "all projects in my database",
       number: allProjects.length,
@@ -21,7 +21,7 @@ const getProjectById = async (req, res) => {
   const { projectId } = req.params;
   try {
     const project = await projectsModel.findById(projectId);
-    console.log("project :>> ", project);
+    // console.log("project :>> ", project);
     if (project) {
       res.status(200).json(project);
     } else {
@@ -91,13 +91,13 @@ const deleteProject = async (req, res) => {
 
   try {
     const project = await projectsModel.findById(projectId);
-    console.log("project :>> ", project);
+    // console.log("project :>> ", project);
     if (userId === project.userId) {
       try {
         const project = await projectsModel.findOneAndDelete({
           _id: projectId,
         });
-        console.log("project", project);
+        // console.log("project", project);
         if (!project) {
           return res.status(400).json({ error: "No such project" });
         } else {
@@ -133,7 +133,7 @@ const updateProject = async (req, res) => {
   const project = await projectsModel.findOneAndUpdate({ _id: id }, update, {
     returnOriginal: false,
   });
-  console.log("project :>> ", project);
+  // console.log("project :>> ", project);
   if (!project) {
     return res.status(400).json({ error: "No such project" });
   }
@@ -148,7 +148,7 @@ const createProject = async (req, res) => {
     description: req.body.description,
     category: req.body.category,
   });
-  console.log("project :>> ", project);
+  // console.log("project :>> ", project);
   try {
     const data = await project.save();
     console.log("data :>> ", data);
