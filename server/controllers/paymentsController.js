@@ -1,6 +1,7 @@
 import stripe from "../config/StripeConfig.js";
 
 const getPaymentIntent = async (req, res) => {
+    console.log("req.body :>> ", req.body);
     //get ammount, project name, project id (to add the the donated amount to the project in the database)
     try {
           const stripeSession = await stripe.checkout.sessions.create({
@@ -8,14 +9,14 @@ const getPaymentIntent = async (req, res) => {
       line_items: [{price_data:{
         currency: "eur",
         product_data: {
-          name: "empowering the youth",
+          name: req.body.projectName,
         },
-        unit_amount: 10000,
+        unit_amount: req.body.amount,
       },
          quantity: 1 }],
     mode: "payment",
-    success_url: "/success",
-    cancel_url: "/cancel",
+    success_url: `${process.env.CLIENT_URL}/payment/success`,
+    cancel_url: `${process.env.CLIENT_URL}/payment/failure`   
   });
 
   return res.json({message:"Payment intent created",stripeSession });

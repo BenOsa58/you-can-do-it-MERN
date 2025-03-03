@@ -43,7 +43,7 @@ const loadRoutes = () => {
   app.use("/api/projects", projectsRouter);
   app.use("/api/user", userRouter);
   app.use("/api/auth", authRoutes);
-  app.use("/api/paments", paymentRouter);
+  app.use("/api/payments", paymentRouter);
 
   app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
