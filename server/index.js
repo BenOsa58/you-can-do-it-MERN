@@ -19,7 +19,12 @@ const addMiddlewares = () => {
       extended: true,
     })
   );
-  app.use(cors());
+  const corsOptions = {
+    origin:
+      "https://you-can-do-it-mern-mbqm1a26b-benosa58s-projects.vercel.app",
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  };
+  app.use(cors(corsOptions));
   app.use(passport.initialize());
   passportConfig(passport);
 };
