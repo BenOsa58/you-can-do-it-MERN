@@ -20,8 +20,8 @@ const addMiddlewares = () => {
     })
   );
   const corsOptions = {
-    origin:
-      "https://you-can-do-it-mern-mbqm1a26b-benosa58s-projects.vercel.app",
+    // origin: "http://localhost:5173",
+    origin: "https://you-can-do-it-mern-86oq.vercel.app",
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   };
   app.use(cors(corsOptions));
