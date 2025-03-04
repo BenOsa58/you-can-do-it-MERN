@@ -45,7 +45,8 @@ const handleSubmitStripePayment=async(event)=>{
     if(response.ok){
       const result = await response.json();
       console.log("result :>> ", result);
-   window.location.href = result.stripeSession.url;
+      window.location.href = result.stripeSession.url;
+     
     }
     if(!response.ok){
       const result = await response.json();
@@ -106,9 +107,10 @@ const handleSubmitStripePayment=async(event)=>{
   };
   const handleChangeSelectedProject = (event) => {
     console.log("event.target.value :>> ", event.target.value);
-    console.log("event.target.name :>> ", event);
+    // console.log("event.target.name :>> ", event.target.selectedOptions[0].text);
+    console.log("event.target.label :>> ", event.target.selectedOptions[0].label);
     setSelectedProjectId(event.target.value);
-    setSelectedProjectName(event.target.name);
+    setSelectedProjectName(event.target.selectedOptions[0].label);
   };
   const handleChangeDonationMoney = (event) => {
     setDonationMoney(event.target.value);
@@ -173,7 +175,7 @@ const handleSubmitStripePayment=async(event)=>{
             />
           </InputGroup> */}
 
-          <InputGroup className="mb-3" controlId="formBasicEmail">
+          <InputGroup className="mb-3" controlid="formBasicEmail">
             <InputGroup.Text id="basic-addon2">Enter Email</InputGroup.Text>
             <Form.Control
               onChange={handleChangeEmail}
@@ -183,8 +185,8 @@ const handleSubmitStripePayment=async(event)=>{
             />
             <Form.Text className="text-muted"></Form.Text>
           </InputGroup>
-          <Form.Select
-            aria-label="Default select example"
+          {/* <Form.Select
+            aria-label="Select-payment-method"
             onChange={handleChangeSelectedPaymentMethods}
             name="paymentMethod"
           >
@@ -192,20 +194,19 @@ const handleSubmitStripePayment=async(event)=>{
             <option value="credit card">Credit Card</option>
             <option value="paypal">PayPal</option>
             <option value="bank transfer">Bank Transfer</option>
-          </Form.Select>
+          </Form.Select> */}
           <Form.Select
-            aria-label="Default select example"
+            aria-label="select-project"
             onChange={handleChangeSelectedProject}
-            name="project"
+           
           >
-            <option>Select the project to donate</option>
+            <option>Select the project to donate</option>  
             {projects &&
               projects.map((project) => {
-                // console.log("project :>> ", project);
                 return (
-                  <option value={project._id} key={project._id} name={project.title}>
+                  <option value={project._id} key={project._id} label={project.title}>
                     {project.title} ({project.category})
-                  </option>
+                  </option> 
                 );
               })}
           </Form.Select>

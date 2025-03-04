@@ -17,7 +17,7 @@ function SingleProject(props) {
         `${process.env.VITE_SERVER_URL}/api/projects/singleProject/${projectId}`
       );
       const data = await response.json();
-      console.log("data :>> ", data);
+      // console.log("data :>> ", data);
       setProject(data);
       const donationsArray = data.donations.map((donation) => {
         return donation.amount;

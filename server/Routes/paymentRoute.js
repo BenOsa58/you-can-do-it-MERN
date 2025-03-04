@@ -1,10 +1,11 @@
 import express from "express";
-import { getPaymentIntent } from "../controllers/paymentsController.js";
+import { getPaymentIntent, getPaymentStatus } from "../controllers/paymentsController.js";
 // const paypalClient = require("./paypalClient");
 // const paypal = require("@paypal/checkout-server-sdk");
 const paymentRouter = express.Router();
 
 paymentRouter.post("/create-payment-intent", getPaymentIntent);
+paymentRouter.get("/get-payment-status/:sessionId", getPaymentStatus);
 // router.post("/create-order", async (req, res) => {
 //   const { amount } = req.body;
 

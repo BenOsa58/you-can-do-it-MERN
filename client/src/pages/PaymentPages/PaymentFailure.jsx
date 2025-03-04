@@ -1,15 +1,10 @@
+import { Link } from "react-router-dom";
+
 const PaymentFailure = () => {
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const paymentIntent = searchParams.get("payment_intent");
-    const paymentMethod = searchParams.get("payment_method");
-    const paymentStatus = searchParams.get("payment_status");   
+ 
 
     return <div>
-        <h1>Payment Failure</h1>
-        <p>Payment Intent: {paymentIntent}</p>
-        <p>Payment Method: {paymentMethod}</p>
-        <p>Payment Status: {paymentStatus}</p>
+        <h1>Payment failed</h1>
         <Link to="/projects">Go to Projects Page</Link>
         </div>;
 };

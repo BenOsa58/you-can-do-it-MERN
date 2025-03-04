@@ -52,8 +52,11 @@ const projectSchema = new Schema(
           lastName: { type: String, require: true },
           email: { type: String, require: true },
         },
+        stripeSessionId: { type: String, require: false },
+        processed: { type: Boolean, default: false }
       },
     ],
+    processedDonations: [String],
   },
   { timestamps: { createdAt: "created_at" } }
 );
