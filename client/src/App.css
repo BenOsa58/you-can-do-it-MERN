@@ -111,15 +111,15 @@ button {
   color: green;
 }
 .me-auto {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   display: flex;
-  overflow: hidden;
+  /* overflow: hidden; */
   justify-content: space-between;
-  z-index: 1;
+  /* z-index: 1; */
   align-items: center;
   border-radius: 20px;
-  width: 80%;
+  max-width: 80%;
   min-height: 50px;
   /* min-width: 100px;
   font-size: x-large; */

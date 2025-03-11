@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Form } from "react-bootstrap";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
 
 function Project(props) {
   // console.log("props :>> ", props);
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+  console.log("location :>> ", location);
+  const [isLinkActive, setIsLinkActive] = useState(true);
   // console.log("user :>> ", user);
   const project = props.project;
   const fetchProjects = props.fetchProjects;
@@ -46,14 +49,20 @@ function Project(props) {
     }
   };
 
+  useEffect(() => {
+    if (location.pathname !== "/projects") {
+      setIsLinkActive(false);
+    }
+  }, []);
+
   return (
     <div>
-      <Card style={{ width: "53rem" }}>
+      <Card style={{ width: "40rem" }}>
         <Card.Img variant="top" src={project.image} />
         <img src="" alt="" />
 
         <Card.Body>
-          <Link to={`${project._id}`}>
+          <Link to={isLinkActive ? `${project._id}` : "#"} ena>
             <Card.Title>{project.title}</Card.Title>
           </Link>
           <Card.Text>title-{project.title}</Card.Text>
@@ -64,6 +73,9 @@ function Project(props) {
             <Button onClick={handleDeleteProject} variant="danger">
               Delete project
             </Button>
+          )}
+          {props.totalDonationsAmount && (
+            <h3>Donations Total Amount: {props.totalDonationsAmount} €</h3>
           )}
         </Card.Body>
       </Card>

@@ -41,8 +41,11 @@ function SingleProject(props) {
         <h1>You Can Do It Charity</h1>
         <Container>
           <Row>
-            <Project project={project} />
-            <h3>Donations Total Amount: {totalDonationsAmount} €</h3>
+            <Project
+              project={project}
+              totalDonationsAmount={totalDonationsAmount}
+            />
+            {/* <h3>Donations Total Amount: {totalDonationsAmount} €</h3> */}
           </Row>
         </Container>
       </Container>
