@@ -14,7 +14,7 @@ function Footer() {
 }
 
 const footerStyle = {
-  position: "fixed",
+  // position: "fixed",
   bottom: 0,
   width: "1o0%",
   height: "0%",

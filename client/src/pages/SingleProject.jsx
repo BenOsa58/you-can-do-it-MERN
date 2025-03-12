@@ -17,7 +17,7 @@ function SingleProject(props) {
         `${process.env.VITE_SERVER_URL}/api/projects/singleProject/${projectId}`
       );
       const data = await response.json();
-      console.log("data :>> ", data);
+      // console.log("data :>> ", data);
       setProject(data);
       const donationsArray = data.donations.map((donation) => {
         return donation.amount;
@@ -41,8 +41,11 @@ function SingleProject(props) {
         <h1>You Can Do It Charity</h1>
         <Container>
           <Row>
-            <Project project={project} />
-            <h3>Donations Total Amount: {totalDonationsAmount} €</h3>
+            <Project
+              project={project}
+              totalDonationsAmount={totalDonationsAmount}
+            />
+            {/* <h3>Donations Total Amount: {totalDonationsAmount} €</h3> */}
           </Row>
         </Container>
       </Container>

@@ -104,7 +104,7 @@ const donate = async (req, res) => {
         "Sorry, the project you are trying to donate to, doesn't exist anymore. Select a different one",
     });
   }
-  console.log("project :>> ", project);
+  // console.log("project :>> ", project);
 
   if (project) {
     return res.status(201).json({

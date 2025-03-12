@@ -9,6 +9,7 @@ import authRoutes from "./Routes/authRoute.js";
 import userRouter from "./Routes/userRoute.js";
 import passport from "passport";
 import passportConfig from "./config/passport.js";
+import paymentRouter from "./Routes/paymentRoute.js";
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ const loadRoutes = () => {
   app.use("/api/projects", projectsRouter);
   app.use("/api/user", userRouter);
   app.use("/api/auth", authRoutes);
+  app.use("/api/payments", paymentRouter);
 
   app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
