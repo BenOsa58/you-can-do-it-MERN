@@ -130,8 +130,10 @@ const DonateForm = ({ projectId, donor, amount, donateFormRef }) => {
       const response = await fetch(
         `${process.env.VITE_SERVER_URL}/api/projects/all`
       );
+      console.log("response :>> ", response);
       // "http://localhost:5000/projects/all");
       const data = await response.json();
+      console.log("data all prokects :>> ", data);
       setProjects(data.projects);
     } catch (error) {
       console.log("error :>> ", error);
