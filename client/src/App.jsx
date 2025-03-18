@@ -51,10 +51,7 @@ function App() {
           <Route path="/media" element={<Media />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
-          <Route
-            path="/payment/success/:sessionId"
-            element={<PaymentSucess />}
-          />
+          <Route path="/payment/success" element={<PaymentSucess />} />
           <Route path="/payment/failure" element={<PaymentFailure />} />
           <Route path="/createProject" element={<CreateProject />} />
           <Route path="/signup" element={<SignUp />} />
