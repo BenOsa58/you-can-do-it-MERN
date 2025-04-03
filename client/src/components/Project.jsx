@@ -58,8 +58,11 @@ function Project(props) {
   return (
     <div>
       <Card style={{ width: "40rem" }}>
-        <Card.Img variant="top" src={project.image} />
-        <img src="" alt="" />
+        <Card.Img
+          variant="top"
+          src={project.image}
+          style={{ width: "25rem", maxHeight: "20rem" }}
+        />
 
         <Card.Body>
           <Link to={isLinkActive ? `${project._id}` : "#"} ena>
