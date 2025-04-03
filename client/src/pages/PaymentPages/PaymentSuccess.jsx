@@ -32,7 +32,7 @@ const PaymentSuccess = () => {
           console.log("result :>> ", result);
           const { projectId, projectName, amount, email, firstName, lastName } =
             result.session.metadata;
-          const donationInfomation = {
+          const donationInformation = {
             donorName: result.session.customer_details.name,
             donorEmail: result.session.customer_details.email,
             donorPhone: result.session.customer_details.phone,
@@ -45,8 +45,8 @@ const PaymentSuccess = () => {
             firstName: firstName,
             lastName: lastName,
           };
-          setDonation(donationInfomation);
-          submitDonationToDatabase(donationInfomation);
+          setDonation(donationInformation);
+          submitDonationToDatabase(donationInformation);
         }
       } catch (error) {
         console.log("error :>> ", error);
@@ -55,16 +55,16 @@ const PaymentSuccess = () => {
     fetchPaymentStatus();
   }, []);
 
-  const submitDonationToDatabase = async (donationInfomation) => {
+  const submitDonationToDatabase = async (donationInformation) => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
     const urlencoded = new URLSearchParams();
-    urlencoded.append("firstName", donationInfomation.firstName);
-    urlencoded.append("lastName", donationInfomation.lastName);
-    urlencoded.append("email", donationInfomation.email);
-    urlencoded.append("amount", donationInfomation.amount);
-    urlencoded.append("projectId", donationInfomation.projectId);
+    urlencoded.append("firstName", donationInformation.firstName);
+    urlencoded.append("lastName", donationInformation.lastName);
+    urlencoded.append("email", donationInformation.email);
+    urlencoded.append("amount", donationInformation.amount);
+    urlencoded.append("projectId", donationInformation.projectId);
     urlencoded.append("stripeSessionId", sessionId);
 
     const requestOptions = {
@@ -73,13 +73,13 @@ const PaymentSuccess = () => {
       body: urlencoded,
     };
     console.log(
-      "donationInfomation.projectId :>> ",
-      donationInfomation.projectId
+      "donationInformation.projectId :>> ",
+      donationInformation.projectId
     );
     try {
       const response = await fetch(
         // `${process.env.VITE_SERVER_URL}/api/user/donate`,
-        `${process.env.VITE_SERVER_URL}/api/projects/donate/${donationInfomation.projectId}`,
+        `${process.env.VITE_SERVER_URL}/api/projects/donate/${donationInformation.projectId}`,
         requestOptions
       );
       console.log("response :>> ", response);
