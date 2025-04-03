@@ -19,7 +19,7 @@ import SingleProject from "./pages/SingleProject";
 import PaymentTest from "./pages/PaymentTest";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import PaymentSucess from "./pages/PaymentPages/PaymentSucess";
+import PaymentSuccess from "./pages/PaymentPages/PaymentSuccess";
 import PaymentFailure from "./pages/PaymentPages/PaymentFailure";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 function App() {
@@ -51,7 +51,7 @@ function App() {
           <Route path="/media" element={<Media />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="/payment/success" element={<PaymentSucess />} />
+          <Route path="/payment/success" element={<PaymentSuccess />} />
           <Route path="/payment/failure" element={<PaymentFailure />} />
           <Route path="/createProject" element={<CreateProject />} />
           <Route path="/signup" element={<SignUp />} />

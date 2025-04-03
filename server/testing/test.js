@@ -10,15 +10,6 @@ const projects = [
     donations: [{ amount: 200 }, { amount: 34 }],
   },
 ];
-
-// const calculateDonationMoney = () => {
-
-// };)
-const calculateDonationMoney = () => {
-  //   return projects.donations.reduce(
-  //     (total, donation) => total + donation.amount,
-  //     0
-  //   );
-};
+const calculateDonationMoney = () => {};
 
 export default calculateDonationMoney;

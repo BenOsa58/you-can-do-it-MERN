@@ -1,6 +1,5 @@
 const paypal = require("@paypal/checkout-server-sdk");
 
-// Environment setup (sandbox or live)
 const environment = new paypal.core.SandboxEnvironment(
   process.env.PAYPAL_CLIENT_ID,
   process.env.PAYPAL_CLIENT_SECRET

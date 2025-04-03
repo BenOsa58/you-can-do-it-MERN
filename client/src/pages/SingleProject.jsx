@@ -45,7 +45,6 @@ function SingleProject(props) {
               project={project}
               totalDonationsAmount={totalDonationsAmount}
             />
-            {/* <h3>Donations Total Amount: {totalDonationsAmount} €</h3> */}
           </Row>
         </Container>
       </Container>
