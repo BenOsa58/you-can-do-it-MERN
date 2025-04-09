@@ -18,7 +18,9 @@ const Media = () => {
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:ccogberlin@gmail.com">ccogberlin@gmail.com</a>
+          <a href="mailto:youcandoitcharity@gmail.com">
+            youcandoitcharity@gmail.com
+          </a>
         </p>
         <p>
           <strong>Facebook:</strong>{" "}
@@ -27,7 +29,7 @@ const Media = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Christ Church Of God
+            You Can Do It Charity
           </a>
         </p>
       </div>
